@@ -23,8 +23,10 @@ class Player {
       move = prompt(
         `${this.player} turn, where would you like to move, 1 to 9: `
       );
+      // Check if q has been pressed, then exit
       if (move.toLowerCase() === "q") {
         process.exit(0);
+        // Check have been entered a number between 1 and 9
       } else if (move >= 1 && move <= 9) {
         if (
           this.game.board[move - 1] === "X" ||
@@ -42,7 +44,7 @@ class Player {
     while (!verified) {
       moveAction();
     }
-    console.log(`${this.player} made a move: ${move}`);
+    console.log(`${this.player} made a move to: ${move}`);
   }
 }
 

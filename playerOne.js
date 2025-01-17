@@ -1,11 +1,15 @@
 // Class Player One
+
+import Player from './player.js'
 class PlayerOne extends Player {
-  constructor(player, move) {
-    super(player);
-    this.move = move;
+  constructor() {
+    super('X')
+    
   }
 
   makeMove() {
-    super.makeMove(this.move);
+    super.makeMove();
   }
 }
+
+export default PlayerOne

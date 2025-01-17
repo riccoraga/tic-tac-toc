@@ -1,5 +1,17 @@
 # TIC TAC TOC Game
 
+## Summary
+
+Play tic-tac-toe on the command line
+
+## Running
+
+Clone this repo
+
+Run `npm install`
+Run `node index.js`
+Enjoy!
+
 ## Pseudocode
 
 Array to keep track of grid that has variables - length 9

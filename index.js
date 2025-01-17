@@ -18,8 +18,12 @@ class Start {
 
   startGame() {
     this.game.displayBoard();
-    this.playerOne.makeMove(this.game);
-    this.playerTwo.makeMove(this.game)
+
+    while(this.game.continue) {
+      this.playerOne.makeMove(this.game);
+      if(!this.game.continue) break //Don't ask for player two to move if player one has won.
+      this.playerTwo.makeMove(this.game)
+    }
   }
 } 
 

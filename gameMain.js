@@ -7,6 +7,10 @@ class Game {
 
   board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+  continue = true
+
+  moveCount = 0
+
   displayBoard() {
     console.log(
       ` ${this.board[0]} | ${this.board[1]} | ${this.board[2]} \n-----------\n ${this.board[3]} | ${this.board[4]} | ${this.board[5]} \n-----------\n ${this.board[6]} | ${this.board[7]} | ${this.board[8]} \n`
@@ -19,17 +23,13 @@ class Game {
     console.clear();
     this.displayBoard();
     console.log(`${player} made a move: ${move}`);
+    this.moveCount += 1
+    this.hasWon()
+    this.isDraw()
   }
 
   hasWon() {
     if (
-      /**
-         *  if (this.board[0] === 'X') {
-           this.board[1] + this.board[2] === "XXX" ||
-           this.board[3] + this.board[6] === "XXX" ||
-           this.board[4] + this.board[8] === "XXX" ? console.log("Player 1 - X has won"): addMove()
-          } 
-          */
       this.board[0] + this.board[1] + this.board[2] === "XXX" ||
       this.board[3] + this.board[4] + this.board[5] === "XXX" ||
       this.board[6] + this.board[7] + this.board[8] === "XXX" ||
@@ -40,7 +40,7 @@ class Game {
       this.board[2] + this.board[4] + this.board[6] === "XXX"
     ) {
       console.log("Player 1 - X has won");
-      //Call some winning logic here
+      this.continue = false
     } else if (
       this.board[0] + this.board[1] + this.board[2] === "OOO" ||
       this.board[6] + this.board[7] + this.board[8] === "OOO" ||
@@ -52,7 +52,15 @@ class Game {
       this.board[2] + this.board[4] + this.board[6] === "OOO"
     ) {
       console.log("Player 2 - O has won");
-      //Call some winning logic here
+      this.continue = false
+    }
+  }
+
+  isDraw() {
+    if(this.moveCount === 9){
+      console.log("It's a draw");
+      this.moveCount = 0
+      this.continue = false
     }
   }
 }

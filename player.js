@@ -19,9 +19,11 @@ class Player {
   makeMove() {
     let verified = false
     let move = ""
+    
 
     while(!verified) {
-        move = prompt("Where would you like to move?")
+      
+        move = prompt(`${this.player} turn, where would you like to move, 1 to 9 : `)
 
         if (this.game.board[move - 1] === "X" || this.game.board[move - 1] === "O") {
             console.log("This square has already been taken");
@@ -36,6 +38,8 @@ class Player {
     //console.log(`${this.player} made a move: ${move}`);
     //game.addMove(this.player, move)
   }
+  
+
 
  
 }

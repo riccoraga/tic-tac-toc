@@ -1,12 +1,19 @@
 // Class Player Two
-import Player from './player.js'
+//import Player from './player.js'
+
+const { Player } = require("./player")
+
 class PlayerTwo extends Player {
-  constructor() {
-    super('O')    
+  constructor(game) {
+    super('O', game)    
   }
   makeMove() {
     super.makeMove(this.move);
   }
 }
 
-export default PlayerTwo
+module.exports= {
+ PlayerTwo
+}
+
+//export default PlayerTwo

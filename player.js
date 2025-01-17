@@ -1,11 +1,11 @@
 // Class Player
 //const prompt = require("prompt-sync")();
-const prompt = require('prompt-sync')();
+const prompt = require("prompt-sync")();
 
 class Player {
   constructor(player, game) {
     this.player = player;
-    this.game = game
+    this.game = game;
   }
 
   setPlayer(player) {
@@ -17,36 +17,40 @@ class Player {
   }
 
   makeMove() {
-    let verified = false
-    let move = ""
-    
-
-    while(!verified) {
-      
-        move = prompt(`${this.player} turn, where would you like to move, 1 to 9 : `)
-
-        if (this.game.board[move - 1] === "X" || this.game.board[move - 1] === "O") {
-            console.log("This square has already been taken");
+    let verified = false;
+    let move = "";
+    const moveAction = () => {
+      move = prompt(
+        `${this.player} turn, where would you like to move, 1 to 9: `
+      );
+      // Check if q has been pressed, then exit
+      if (move.toLowerCase() === "q") {
+        process.exit(0);
+        // Check have been entered a number between 1 and 9
+      } else if (move >= 1 && move <= 9) {
+        if (
+          this.game.board[move - 1] === "X" ||
+          this.game.board[move - 1] === "O"
+        ) {
+          console.log("This square has already been taken");
         } else {
-            verified = true
+          verified = true;
+          this.game.addMove(this.player, move);
         }
+      } else {
+        console.log("Invalid move. Please enter a number between 1 and 9.");
+      }
+    };
+    while (!verified) {
+      moveAction();
     }
-
-    this.game.addMove(this.player, move)
-
-    //insertMove(this.player) 
-    //console.log(`${this.player} made a move: ${move}`);
-    //game.addMove(this.player, move)
+    console.log(`${this.player} made a move to: ${move}`);
   }
-  
-
-
- 
 }
 
 module.exports = {
-  Player
-}
+  Player,
+};
 
 //export default Player
 //const player1 = new Player("Rick - 0");

@@ -25,7 +25,7 @@ class Game {
     console.log(`${player} made a move: ${move}`);
     this.moveCount += 1
     this.hasWon()
-    this.isDraw()
+    if(this.moveCount === 9) {this.isDraw()}
   }
 
   hasWon() {
@@ -57,11 +57,9 @@ class Game {
   }
 
   isDraw() {
-    if(this.moveCount === 9){
       console.log("It's a draw");
       this.moveCount = 0
       this.continue = false
-    }
   }
 }
 

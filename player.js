@@ -19,30 +19,30 @@ class Player {
   makeMove() {
     let verified = false;
     let move = "";
-
-    while (!verified) {
+    const moveAction = () => {
       move = prompt(
-        `${this.player} turn, where would you like to move, 1 to 9 : `
+        `${this.player} turn, where would you like to move, 1 to 9: `
       );
       if (move.toLowerCase() === "q") {
-       process.exit(0);
-      }
-      if (
-        this.game.board[move - 1] === "X" ||
-        this.game.board[move - 1] === "O"
-      ) {
-        console.log("This square has already been taken");
-        this.game.addMove(this.player, move) // Call again as was missing a move
+        process.exit(0);
+      } else if (move >= 1 && move <= 9) {
+        if (
+          this.game.board[move - 1] === "X" ||
+          this.game.board[move - 1] === "O"
+        ) {
+          console.log("This square has already been taken");
+        } else {
+          verified = true;
+          this.game.addMove(this.player, move);
+        }
       } else {
-        verified = true;
+        console.log("Invalid move. Please enter a number between 1 and 9.");
       }
+    };
+    while (!verified) {
+      moveAction();
     }
-
-    this.game.addMove(this.player, move);
-
-    //insertMove(this.player)
-    //console.log(`${this.player} made a move: ${move}`);
-    //game.addMove(this.player, move)
+    console.log(`${this.player} made a move: ${move}`);
   }
 }
 

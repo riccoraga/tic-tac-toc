@@ -1,11 +1,11 @@
 // Class Player
 //const prompt = require("prompt-sync")();
-const prompt = require('prompt-sync')();
+const prompt = require("prompt-sync")();
 
 class Player {
   constructor(player, game) {
     this.player = player;
-    this.game = game
+    this.game = game;
   }
 
   setPlayer(player) {
@@ -17,36 +17,38 @@ class Player {
   }
 
   makeMove() {
-    let verified = false
-    let move = ""
-    
+    let verified = false;
+    let move = "";
 
-    while(!verified) {
-      
-        move = prompt(`${this.player} turn, where would you like to move, 1 to 9 : `)
-
-        if (this.game.board[move - 1] === "X" || this.game.board[move - 1] === "O") {
-            console.log("This square has already been taken");
-        } else {
-            verified = true
-        }
+    while (!verified) {
+      move = prompt(
+        `${this.player} turn, where would you like to move, 1 to 9 : `
+      );
+      if (move.toLowerCase() === "q") {
+       process.exit(0);
+      }
+      if (
+        this.game.board[move - 1] === "X" ||
+        this.game.board[move - 1] === "O"
+      ) {
+        console.log("This square has already been taken");
+        this.game.addMove(this.player, move) // Call again as was missing a move
+      } else {
+        verified = true;
+      }
     }
 
-    this.game.addMove(this.player, move)
+    this.game.addMove(this.player, move);
 
-    //insertMove(this.player) 
+    //insertMove(this.player)
     //console.log(`${this.player} made a move: ${move}`);
     //game.addMove(this.player, move)
   }
-  
-
-
- 
 }
 
 module.exports = {
-  Player
-}
+  Player,
+};
 
 //export default Player
 //const player1 = new Player("Rick - 0");
